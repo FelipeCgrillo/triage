@@ -1,0 +1,228 @@
+/* Estilos generales */
+body {
+    background-color: #f5f7fa;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Encabezado */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin: 30px 0;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+/* Sección de grabación */
+.recording-section {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.audio-visualizer {
+    height: 150px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    border: 2px dashed #dee2e6;
+}
+
+.recording-indicator {
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 1.2em;
+    animation: blink 1s infinite;
+}
+
+.recording-prompt {
+    color: #6c757d;
+    font-size: 1.1em;
+}
+
+.audio-player {
+    width: 100%;
+    max-width: 600px;
+    height: 50px;
+}
+
+/* Controles */
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover:not(.disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button.primary { 
+    background-color: #4361ee; 
+    color: white; 
+}
+
+.button.danger { 
+    background-color: #ef233c; 
+    color: white; 
+}
+
+.button.success { 
+    background-color: #2a9d8f; 
+    color: white; 
+}
+
+.button.disabled {
+    background-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Tarjeta de análisis */
+.analysis-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.timestamp {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.transcription-section, .diagnosis-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+h2, h3, h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.urgency-level {
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 10px 0;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+.urgency-level.high {
+    background-color: #ffd7d7;
+    color: #dc3545;
+}
+
+.urgency-level.medium {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.urgency-level.low {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* Sección de historial */
+.history-section {
+    margin-top: 50px;
+}
+
+.history-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.history-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-content {
+    margin-top: 15px;
+}
+
+/* Animaciones */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Lista de recomendaciones */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin: 12px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+li:before {
+    content: "•";
+    color: #4361ee;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 15px;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
