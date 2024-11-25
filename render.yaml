@@ -1,1 +1,13 @@
- 
+services:
+  - type: web
+    name: mi-app-medica
+    env: node
+    buildCommand: npm install && npm run render-build
+    startCommand: npm start
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
