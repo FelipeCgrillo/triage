@@ -6,9 +6,22 @@ const bodyParser = require('body-parser');
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 3001;
 
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://tu-frontend-en-render.onrender.com'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  }
+}));
 app.use(bodyParser.json());
 
 // Ruta de prueba
@@ -18,6 +31,6 @@ app.get('/', (req, res) => {
 
 // Aquí irán tus otras rutas...
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   console.log(`Servidor corriendo en puerto ${port}`);
 });
