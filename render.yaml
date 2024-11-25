@@ -10,7 +10,7 @@ services:
       - key: PORT
         value: 4000
 
-  - type: static
+  - type: web
     name: triage-frontend
     env: static
     buildCommand: cd frontend && npm install && npm run build
