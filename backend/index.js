@@ -6,7 +6,6 @@ const cors = require('cors');
 const OpenAI = require('openai');
 const fs = require('fs');
 const path = require('path');
-const compression = require('compression');
 
 // Configurar multer para guardar los archivos temporalmente
 const storage = multer.diskStorage({
@@ -35,15 +34,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Habilitar compresión gzip
-app.use(compression());
-
-// Servir archivos estáticos con cache
-app.use(express.static('build', {
-  maxAge: '1y',
-  etag: true,
-}));
-
 // Asegurarse de que existe el directorio uploads
 if (!fs.existsSync('uploads')) {
     fs.mkdirSync('uploads');
@@ -53,17 +43,6 @@ if (!fs.existsSync('uploads')) {
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY.trim(), // Asegurarse de que no hay espacios
 });
-
-const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' 
-        ? ['https://mi-app-medica.onrender.com', 'https://*.onrender.com']
-        : '*',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-};
-
-app.use(cors(corsOptions));
 
 app.post('/analyze-audio', upload.single('file'), async (req, res) => {
     try {
@@ -139,22 +118,9 @@ app.post('/analyze-audio', upload.single('file'), async (req, res) => {
     }
 });
 
-// Servir archivos estáticos de React
-const rootDir = path.resolve(__dirname, '..');
-app.use(express.static(path.join(rootDir, 'frontend/build')));
-
-// Manejar todas las rutas que no sean API
-app.get('*', (req, res) => {
-  res.sendFile(path.join(rootDir, 'frontend/build/index.html'));
-});
-
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
-    // Muestra la IP local para facilitar el acceso
-    const networkInterfaces = require('os').networkInterfaces();
-    const ip = Object.values(networkInterfaces)
-        .flat()
-        .find(details => details.family === 'IPv4' && !details.internal)?.address;
-    console.log(`Accede desde otros dispositivos usando: http://${ip}:${PORT}`);
+    console.log('API Key configurada:', process.env.OPENAI_API_KEY ? 'Sí' : 'No');
+    console.log('Directorio de uploads:', path.resolve('uploads'));
 });

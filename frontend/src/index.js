@@ -1,28 +1,13 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-
-const Home = React.lazy(() => import('./Home'));
-const Consulta = React.lazy(() => import('./Consulta'));
-
-// Agregar un componente de carga
-const LoadingFallback = () => (
-  <div className="loading-spinner">
-    Cargando...
-  </div>
-);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Suspense fallback={<LoadingFallback />}>
-        <App />
-      </Suspense>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
 // If you want to start measuring performance in your app, pass a function
