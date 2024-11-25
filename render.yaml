@@ -3,8 +3,8 @@ services:
     name: triage-backend
     env: node
     region: ohio
-    buildCommand: cd Backend && npm install
-    startCommand: cd Backend && node index.js
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node index.js
     envVars:
       - key: NODE_ENV
         value: production
