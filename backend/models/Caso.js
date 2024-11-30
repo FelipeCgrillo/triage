@@ -19,7 +19,7 @@ const casoSchema = new mongoose.Schema({
     required: true
   },
   analisis: String,
-  recomendaciones: String,
+  recomendaciones: [String],
   estado: {
     type: String,
     enum: ['pendiente', 'en_proceso', 'completado'],
